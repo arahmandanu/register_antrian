@@ -14,9 +14,10 @@
     <body>
         <div class="container-fluid">
             <h1 class="text-center">Register Cabang Antrian BRI</h1>
-        </div>
-        <div class="container">
             @include('flash::message')
+        </div>
+
+        <div class="container">
             <div class="cta-form">
                 <h2>Isi Form!</h2>
                 <p>Untuk detail bisa di baca di bawah.</p>

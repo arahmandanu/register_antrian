@@ -24,7 +24,7 @@ class RegisterController extends Controller
     public function create(Request $request)
     {
         if (!file_exists($this->pathRegistration)) {
-            File::makeDirectory($this->path);
+            File::makeDirectory($this->pathRegistration);
         }
 
         $validated = $request->validate([
