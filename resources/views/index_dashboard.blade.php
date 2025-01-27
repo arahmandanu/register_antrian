@@ -16,16 +16,17 @@
             <h1 class="text-center">Register Cabang Antrian BRI</h1>
         </div>
         <div class="container">
+            @include('flash::message')
             <div class="cta-form">
                 <h2>Isi Form!</h2>
                 <p>Untuk detail bisa di baca di bawah.</p>
             </div>
-            <form action="{{ route('RegisterBranch') }}" class="form" method="POST">
+            <form action="{{ route('RegisterCompany') }}" class="form" method="POST">
                 @csrf
-                <input type="text" placeholder="Name" class="form__input" id="name" name="branch_name" />
+                <input type="text" placeholder="Name" class="form__input" id="name" name="company_name" />
                 <label for="name" class="form__label">Nama Cabang</label>
 
-                <input type="text" placeholder="Email" class="form__input" id="email" name="branch_code" />
+                <input type="text" placeholder="Email" class="form__input" id="email" name="company_code" />
                 <label for="email" class="form__label">Kode Cabang</label>
 
                 <button type="submit" class="btn btn-primary">Register!</button>

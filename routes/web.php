@@ -18,4 +18,4 @@ Route::get('/', function () {
     return view('index_dashboard');
 })->name('masterPage');
 
-Route::post('/register_branch', [RegisterController::class, 'create'])->name('RegisterBranch');
+Route::post('/register_company', [RegisterController::class, 'create'])->name('RegisterCompany');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use starekrow\Lockbox\CryptoKey;
 
 class RegisterController extends Controller
 
@@ -27,15 +28,23 @@ class RegisterController extends Controller
         }
 
         $validated = $request->validate([
-            'branch_code' => 'integer|required',
-            'branch_name' => 'string|required'
+            'company_code' => 'integer|required',
+            'company_name' => 'string|required'
         ]);
 
-        $fullFolder = $this->pathRegistration . "/${validated['branch_name']}";
+        $fullFolder = $this->pathRegistration . "/${validated['company_name']}";
         if (file_exists($fullFolder)) {
-            return redirect()->route('masterPage', ['message' => "Sudah ada data ${validated['branch_name']}"]);
+            flash("Sudah ada data ${validated['company_name']}")->error();
         }
 
         File::makeDirectory($fullFolder);
+        $key = new CryptoKey();
+        $message = json_encode($validated);
+        $ciphertext = $key->Lock($message);
+
+        file_put_contents("${fullFolder}/key.txt", $key->Export());
+        file_put_contents("${fullFolder}/cipher.txt", $ciphertext);
+        flash("Success, silahkan cek!\n ${validated['company_name']}")->success();
+        return redirect()->route('masterPage');
     }
 }
