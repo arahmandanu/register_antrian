@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index_dashboard');
-})->name('masterPage');
+    return redirect()->route('antrianBriPage');
+})->name('Main');
+
+Route::get('/antrian', [RegisterController::class, 'antrian'])->name('antrianBriPage');
+Route::get('/puskesmas', [RegisterController::class, 'Puskesmas'])->name('antrianPuskesmasPage');
 
 Route::post('/register_company', [RegisterController::class, 'create'])->name('RegisterCompany');
+Route::post('/register_puskesmas', [RegisterController::class, 'createPuskesmas'])->name('RegisterPuskesmas');

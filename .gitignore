@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /public/register
+/public/register_puskesmas
 /storage/*.key
 /vendor
 .env
